@@ -1,0 +1,15 @@
+.top-nav-menu {
+    background-color: purple;
+    height: 4em;
+
+}
+
+.top-nav-menu ul {
+    font-size: 1.5em;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+}
