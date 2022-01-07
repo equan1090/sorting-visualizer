@@ -1,0 +1,9 @@
+.array-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.each-box {
+    margin: 0 1px;
+    background-color: blue;
+    width: 3px;
+}
