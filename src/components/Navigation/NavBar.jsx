@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import ArrayBlocks from "../ArrayBlocks/ArrayBlocks";
-import Box from '@mui/material/Box';
+
 import Slider from '@mui/material/Slider';
 import './NavBar.css'
 
 function NavBar() {
 
     const [arr, setArr] = useState([])
-    const [arrSize, setArrSize] = useState(5)
+    const [arrSize, setArrSize] = useState(10)
 
     console.log('this is arr size', arrSize)
 
@@ -41,7 +41,7 @@ function NavBar() {
                     <div>
                         <li>Array Size</li>
                         <Slider
-
+                            value={arrSize}
                             onChange={(e, value) => setArrSize(value)}
                             min={5}
                             max={300}
