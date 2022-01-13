@@ -9,6 +9,8 @@ function NavBar() {
     const [arr, setArr] = useState([])
     const [arrSize, setArrSize] = useState(5)
 
+    console.log('this is arr size', arrSize)
+
     const generateArr = () => {
         let random = []
         for(let i = 0; i < arrSize; i++) {
@@ -39,7 +41,8 @@ function NavBar() {
                     <div>
                         <li>Array Size</li>
                         <Slider
-                            defaultValue={5}
+
+                            onChange={(e, value) => setArrSize(value)}
                             min={5}
                             max={300}
                             aria-label="Default"
