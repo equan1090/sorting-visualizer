@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import ArrayBlocks from "../ArrayBlocks/ArrayBlocks";
-
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 import './NavBar.css'
 
 function NavBar() {
@@ -37,11 +38,13 @@ function NavBar() {
                     <li onClick={() => setArr(generateArr())}>New Array</li>
                     <div>
                         <li>Array Size</li>
-                        <input type="number"
-                            value={arrSize}
-                            min="5"
-                            max="300"
-                            onChange={() => setArrSize()}/>
+                        <Slider
+                            defaultValue={5}
+                            min={5}
+                            max={300}
+                            aria-label="Default"
+                            valueLabelDisplay="auto"
+                        />
                     </div>
                     <li>Sorting Method</li>
                 </ul>
