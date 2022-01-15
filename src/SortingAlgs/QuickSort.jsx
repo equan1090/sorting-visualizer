@@ -1,5 +1,5 @@
 function QuickSort(arr) {
-    quickSortHelper(arr, 0, len(arr) - 1)
+    quickSortHelper(arr, 0, arr.length - 1)
     return arr
 }
 
