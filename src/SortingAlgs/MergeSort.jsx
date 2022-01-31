@@ -1,45 +1,55 @@
 function mergeSort(arr) {
+
+    const animation = []
+
     if(arr.length <= 1) {
         return arr
     }
     auxiliaryArray = arr.slice()
-    mergeSortHelper(arr, 0, arr.length - 1, auxiliaryArray)
-    return arr
+    mergeSortHelper(arr, 0, arr.length - 1, auxiliaryArray, animation)
+    return animation
 }
 
-function mergeSortHelper(mainArr, startIdx, endIdx, auxiliaryArray) {
+function mergeSortHelper(mainArr, startIdx, endIdx, auxiliaryArray, animation) {
     if (startIdx == endIdx) {
         return
     }
     middleIdx = Math.floor((startIdx + endIdx) / 2)
-    mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArr)
-    mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArr)
-    doMerge(mainArr, startIdx, middleIdx, endIdx, auxiliaryArray)
+    mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArr, animation)
+    mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArr, animation)
+    doMerge(mainArr, startIdx, middleIdx, endIdx, auxiliaryArray, animation)
 }
-function doMerge(mainArr, startIdx, middleIdx, endIdx, auxiliaryArray) {
+function doMerge(mainArr, startIdx, middleIdx, endIdx, auxiliaryArray, animation) {
     k = startIdx
     i = startIdx
     j = middleIdx + 1
 
     while(i <= middleIdx && j <= endIdx) {
+
+        animation.push([i, j])
+        animation.push([i, j])
+
         if(auxiliaryArray[i] <= auxiliaryArray[j]) {
-            mainArr[k] = auxiliaryArray[i]
-            i += 1
+            animation.push([k, auxiliaryArray[i]])
+            mainArr[k++] = auxiliaryArray[i++]
+
         } else{
-            mainArr[k] = auxiliaryArray[j]
-            j += 1
+            animation.push([k, auxiliaryArray[j]])
+            mainArr[k++] = auxiliaryArray[j++]
         }
-        k += 1
     }
     while(i <= middleIdx) {
-        mainArr[k] = auxiliaryArray[i]
-        i++
-        k++
+        animation.push([i, i]);
+        animation.push([i, i]);
+        animation.push([k, auxiliaryArray[i]]);
+        mainArr[k++] = auxiliaryArray[i++]
+
     }
     while(j <= endIdx) {
-        mainArr[k] = auxiliaryArray[j]
-        j++
-        k++
+        animation.push([j, j]);
+        animation.push([j, j]);
+        mainArr[k++] = auxiliaryArray[j++]
+
     }
 
 }
