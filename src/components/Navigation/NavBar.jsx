@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ArrayBlocks from "../ArrayBlocks/ArrayBlocks";
+import { mergeSort } from "../../SortingAlgs/MergeSort";
 // import {BubbleSort} from "../../SortingAlgs/BubbleSort";
 import Slider from '@mui/material/Slider';
 import './NavBar.css'
@@ -9,8 +10,7 @@ function NavBar() {
     const [arr, setArr] = useState([])
     const [arrSize, setArrSize] = useState(10)
 
-    console.log('this is arr size', arrSize)
-
+    //Resets and Generates a new array
     const generateArr = () => {
         let random = []
         for(let i = 0; i < arrSize; i++) {
@@ -19,8 +19,39 @@ function NavBar() {
         return random
     }
 
+    //Shows the animation of each box moving
+    const mergeSortAnimation = () => {
+        const animation = mergeSort(arr)
+        for(let i = 0; i < animation.length; i++) {
+            const bar = document.getElementsByClassName('each-box')
+            const isColorChange = i % 3 !== 2;
+
+            if(isColorChange) {
+                const [barOne, barTwo] = animation[i]
+                const barOneStyle = bar[barOne]?.style
+                const barTwoStyle = bar[barTwo]?.style
+                const color = i % 3 === 0 ? 'blue' : 'red'
+
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * 1)
+
+            }else {
+                setTimeout(() => {
+                    const [barOne, newHeight] = animation[i]
+                    const barOneStyle = bar[barOne]?.style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * 1)
+            }
+        }
+    }
+
+
+
     //Uses localStorage to keep state on refresh
     useEffect(() => {
+
         const data = localStorage.getItem('current-array')
         if(data) {
             setArr(JSON.parse(data))
@@ -48,6 +79,7 @@ function NavBar() {
                         />
                     </div>
                     <li>Sorting Method</li>
+                    <button onClick={() => mergeSortAnimation()}>Merge Sort</button>
                 </ul>
             </nav>
 
