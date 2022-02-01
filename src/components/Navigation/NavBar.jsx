@@ -26,15 +26,20 @@ function NavBar() {
             const bar = document.getElementsByClassName('each-box')
             const isColorChange = i % 3 !== 2;
 
-            if(isColorChange) {
+
+
+            if(isColorChange && bar) {
+                debugger;
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
                 const color = i % 3 === 0 ? 'blue' : 'red'
 
                 setTimeout(() => {
-                    barOneStyle.backgroundColor = color;
-                    barTwoStyle.backgroundColor = color;
+                    if(barOneStyle && barTwoStyle){
+                        barOneStyle.backgroundColor = color;
+                        barTwoStyle.backgroundColor = color;
+                    }
                 }, i * 1)
 
             }else {
