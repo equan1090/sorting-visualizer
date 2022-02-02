@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import ArrayBlocks from "../ArrayBlocks/ArrayBlocks";
 import { mergeSort } from "../../SortingAlgs/MergeSort";
-// import {BubbleSort} from "../../SortingAlgs/BubbleSort";
+import {BubbleSort} from "../../SortingAlgs/BubbleSort";
 import Slider from '@mui/material/Slider';
 import './NavBar.css'
 
@@ -9,6 +9,7 @@ function NavBar() {
 
     const [arr, setArr] = useState([])
     const [arrSize, setArrSize] = useState(10)
+    const ANIMATION_TIME = 1
 
     //Resets and Generates a new array
     const generateArr = () => {
@@ -17,6 +18,34 @@ function NavBar() {
             random.push(Math.floor(Math.random() * (800 - 5) + 5))
         }
         return random
+    }
+    const bubbleSortAnimation = () => {
+        const animation = BubbleSort(arr)
+        for(let i = 0; i < animation.length; i++) {
+            const bar = document.getElementsByClassName('each-box')
+            const isColorChange = i % 3 !== 2;
+            if(isColorChange) {
+
+                const [barOne, barTwo] = animation[i]
+                const barOneStyle = bar[barOne]?.style
+                const barTwoStyle = bar[barTwo]?.style
+                const color = i % 3 === 0 ? 'red' : 'blue'
+
+                setTimeout(() => {
+                    if(barOneStyle && barTwoStyle){
+                        barOneStyle.backgroundColor = color;
+                        barTwoStyle.backgroundColor = color;
+                    }
+                }, i * ANIMATION_TIME)
+
+            }else {
+                setTimeout(() => {
+                    const [barOne, newHeight] = animation[i]
+                    const barOneStyle = bar[barOne]?.style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * ANIMATION_TIME)
+            }
+        }
     }
 
     //Shows the animation of each box moving
@@ -30,21 +59,21 @@ function NavBar() {
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
-                const color = i % 3 === 0 ? 'blue' : 'red'
+                const color = i % 3 === 0 ? 'red' : 'blue'
 
                 setTimeout(() => {
                     if(barOneStyle && barTwoStyle){
                         barOneStyle.backgroundColor = color;
                         barTwoStyle.backgroundColor = color;
                     }
-                }, i * 1)
+                }, i * ANIMATION_TIME)
 
             }else {
                 setTimeout(() => {
                     const [barOne, newHeight] = animation[i]
                     const barOneStyle = bar[barOne]?.style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * 1)
+                }, i * ANIMATION_TIME)
             }
         }
     }
@@ -82,6 +111,7 @@ function NavBar() {
                     </div>
                     <li>Sorting Method</li>
                     <button onClick={() => mergeSortAnimation()}>Merge Sort</button>
+                    <button onClick={() => bubbleSortAnimation()}>Bubble Sort</button>
                 </ul>
             </nav>
 
