@@ -11,10 +11,10 @@ export function mergeSort(arr) {
 }
 
 function mergeSortHelper(mainArr, startIdx, endIdx, auxiliaryArray, animation) {
-    if (startIdx == endIdx) {
+    if (startIdx === endIdx) {
         return
     }
-    const middleIdx = Math.floor((startIdx + endIdx) / 2)
+    const middleIdx = Math.floor((startIdx + endIdx) / 2);
     mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArr, animation)
     mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArr, animation)
     doMerge(mainArr, startIdx, middleIdx, endIdx, auxiliaryArray, animation)
@@ -26,15 +26,21 @@ function doMerge(mainArr, startIdx, middleIdx, endIdx, auxiliaryArray, animation
 
     while(i <= middleIdx && j <= endIdx) {
 
+        //Changes color when comparing
         animation.push([i, j])
+
+        // Reverts color
         animation.push([i, j])
 
         if(auxiliaryArray[i] <= auxiliaryArray[j]) {
+
+            // overwrite the value at index k in the original array
             animation.push([k, auxiliaryArray[i]])
+
             mainArr[k++] = auxiliaryArray[i++]
 
         } else{
-            animation.push([k, auxiliaryArray[j]])
+            animation.push([k, auxiliaryArray[j]]);
             mainArr[k++] = auxiliaryArray[j++]
         }
     }
@@ -48,6 +54,7 @@ function doMerge(mainArr, startIdx, middleIdx, endIdx, auxiliaryArray, animation
     while(j <= endIdx) {
         animation.push([j, j]);
         animation.push([j, j]);
+        animation.push([k, auxiliaryArray[j]])
         mainArr[k++] = auxiliaryArray[j++]
 
     }

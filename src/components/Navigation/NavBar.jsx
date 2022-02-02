@@ -25,11 +25,8 @@ function NavBar() {
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
             const isColorChange = i % 3 !== 2;
+            if(isColorChange) {
 
-
-
-            if(isColorChange && bar) {
-                debugger;
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
