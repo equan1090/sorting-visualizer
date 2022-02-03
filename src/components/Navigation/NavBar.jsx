@@ -20,32 +20,36 @@ function NavBar() {
         return random
     }
     const bubbleSortAnimation = () => {
+        console.log('arr', arr)
         const animation = BubbleSort(arr)
-        for(let i = 0; i < animation.length; i++) {
-            const bar = document.getElementsByClassName('each-box')
-            const isColorChange = i % 3 !== 2;
-            if(isColorChange) {
+    
+        // for(let i = 0; i < animation.length; i++) {
+        //     const bar = document.getElementsByClassName('each-box')
+        //     const isColorChange = i % 3 !== 2;
+        //     if(isColorChange) {
 
-                const [barOne, barTwo] = animation[i]
-                const barOneStyle = bar[barOne]?.style
-                const barTwoStyle = bar[barTwo]?.style
-                const color = i % 3 === 0 ? 'red' : 'blue'
+        //         const [barOne, barTwo] = animation[i]
+        //         const barOneStyle = bar[barOne]?.style
+        //         const barTwoStyle = bar[barTwo]?.style
+        //         const color = i % 3 === 0 ? 'red' : 'blue'
 
-                setTimeout(() => {
-                    if(barOneStyle && barTwoStyle){
-                        barOneStyle.backgroundColor = color;
-                        barTwoStyle.backgroundColor = color;
-                    }
-                }, i * ANIMATION_TIME)
+        //         setTimeout(() => {
+        //             if(barOneStyle && barTwoStyle){
+        //                 barOneStyle.backgroundColor = color;
+        //                 barTwoStyle.backgroundColor = color;
+        //             }
+        //         }, i * ANIMATION_TIME)
 
-            }else {
-                setTimeout(() => {
-                    const [barOne, newHeight] = animation[i]
-                    const barOneStyle = bar[barOne]?.style;
-                    barOneStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_TIME)
-            }
-        }
+        //     }else {
+        //         setTimeout(() => {
+
+        //             const [barOne, newHeight] = animation[i]
+        //             const barOneStyle = bar[barOne]?.style;
+        //             barOneStyle.height = `${newHeight}px`;
+
+        //         }, i * ANIMATION_TIME)
+        //     }
+        // }
     }
 
     //Shows the animation of each box moving

@@ -1,12 +1,14 @@
 export function mergeSort(arr) {
 
     const animation = []
+    console.log('arr', arr)
 
     if(arr.length <= 1) {
         return arr
     }
     const auxiliaryArray = arr.slice()
     mergeSortHelper(arr, 0, arr.length - 1, auxiliaryArray, animation)
+    console.log('merge animation', animation)
     return animation
 }
 
