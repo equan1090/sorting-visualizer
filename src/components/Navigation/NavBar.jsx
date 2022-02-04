@@ -9,7 +9,7 @@ function NavBar() {
 
     const [arr, setArr] = useState([])
     const [arrSize, setArrSize] = useState(10)
-    const ANIMATION_TIME = 1
+    const ANIMATION_TIME = 100
 
     //Resets and Generates a new array
     const generateArr = () => {
