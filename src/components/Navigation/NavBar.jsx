@@ -23,9 +23,11 @@ function NavBar() {
         console.log('arr', arr)
         const animation = BubbleSort(arr)
         console.log(animation)
+
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
             const isColorChange = i % 3 !== 2;
+
             if(isColorChange) {
 
                 const [barOne, barTwo] = animation[i]
