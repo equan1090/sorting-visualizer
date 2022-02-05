@@ -24,34 +24,61 @@ function NavBar() {
         const animation = BubbleSort(arr)
         console.log(animation)
 
+
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
-            const isColorChange = i % 3 !== 2;
-
-            if(isColorChange) {
-
+            if(Array.isArray(animation[i])) {
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
-                const color = i % 3 === 0 ? 'red' : 'blue'
-
+                const color = i % 2 === 0 ? 'red' : 'blue'
                 setTimeout(() => {
                     if(barOneStyle && barTwoStyle){
                         barOneStyle.backgroundColor = color;
                         barTwoStyle.backgroundColor = color;
                     }
                 }, i * ANIMATION_TIME)
-
             }else {
                 setTimeout(() => {
+                    const barObject = animation[i]
+                    const key = Object.keys(barObject)[0]
 
-                    const [barOne, newHeight] = animation[i]
-                    const barOneStyle = bar[barOne]?.style;
-                    barOneStyle.height = `${newHeight}px`;
+
+                    const barOneStyle = bar[key]?.style;
+                    barOneStyle.height = `${barObject[key]}px`;
 
                 }, i * ANIMATION_TIME)
             }
+
         }
+        // for(let i = 0; i < animation.length; i++) {
+        //     const bar = document.getElementsByClassName('each-box')
+        //     const isColorChange = i % 3 !== 2;
+
+        //     if(isColorChange) {
+
+        //         const [barOne, barTwo] = animation[i]
+        //         const barOneStyle = bar[barOne]?.style
+        //         const barTwoStyle = bar[barTwo]?.style
+        //         const color = i % 3 === 0 ? 'red' : 'blue'
+
+        //         setTimeout(() => {
+        //             if(barOneStyle && barTwoStyle){
+        //                 barOneStyle.backgroundColor = color;
+        //                 barTwoStyle.backgroundColor = color;
+        //             }
+        //         }, i * ANIMATION_TIME)
+
+        //     }else {
+        //         setTimeout(() => {
+
+        //             const [barOne, newHeight] = animation[i]
+        //             const barOneStyle = bar[barOne]?.style;
+        //             barOneStyle.height = `${newHeight}px`;
+
+        //         }, i * ANIMATION_TIME)
+        //     }
+        // }
     }
 
     //Shows the animation of each box moving

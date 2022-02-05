@@ -1,14 +1,17 @@
 export function BubbleSort(arr) {
     const animation = []
     for(let i = 0; i < arr.length; i++) {
-        for(let j = 0; j < arr.length; j++) {
+        for(let j = 0; j < arr.length - i; j++) {
             animation.push([j, j + 1])
             animation.push([j, j + 1])
             if(arr[j] > arr[j + 1]) {
-                animation.push([j, arr[j + 1]])
-                swap(j, j + 1, arr)
-            }else{
-                animation.push([j, arr[j]])
+                let larger = j + 1
+                const obj = {}
+                obj[larger] = arr[j]
+
+                animation.push(obj)
+                swap(j, j + 1, arr, animation)
+
             }
         }
     }
@@ -17,10 +20,14 @@ export function BubbleSort(arr) {
     return animation
 }
 
-function swap(i, j, arr) {
+function swap(i, j, arr, animation) {
+
     let temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
+    const obj = {}
+    obj[i] = arr[i]
+    animation.push(obj)
 
 }
 
