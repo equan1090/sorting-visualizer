@@ -20,10 +20,8 @@ function NavBar() {
         return random
     }
     const bubbleSortAnimation = () => {
-        console.log('arr', arr)
-        const animation = BubbleSort(arr)
-        console.log(animation)
 
+        const animation = BubbleSort(arr)
 
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
@@ -31,6 +29,8 @@ function NavBar() {
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
+
+                //
                 const color = i % 2 === 0 ? 'red' : 'blue'
                 setTimeout(() => {
                     if(barOneStyle && barTwoStyle){
@@ -40,10 +40,9 @@ function NavBar() {
                 }, i * ANIMATION_TIME)
             }else {
                 setTimeout(() => {
+                    // Changes the height of the bars
                     const barObject = animation[i]
                     const key = Object.keys(barObject)[0]
-
-
                     const barOneStyle = bar[key]?.style;
                     barOneStyle.height = `${barObject[key]}px`;
 
@@ -51,34 +50,7 @@ function NavBar() {
             }
 
         }
-        // for(let i = 0; i < animation.length; i++) {
-        //     const bar = document.getElementsByClassName('each-box')
-        //     const isColorChange = i % 3 !== 2;
 
-        //     if(isColorChange) {
-
-        //         const [barOne, barTwo] = animation[i]
-        //         const barOneStyle = bar[barOne]?.style
-        //         const barTwoStyle = bar[barTwo]?.style
-        //         const color = i % 3 === 0 ? 'red' : 'blue'
-
-        //         setTimeout(() => {
-        //             if(barOneStyle && barTwoStyle){
-        //                 barOneStyle.backgroundColor = color;
-        //                 barTwoStyle.backgroundColor = color;
-        //             }
-        //         }, i * ANIMATION_TIME)
-
-        //     }else {
-        //         setTimeout(() => {
-
-        //             const [barOne, newHeight] = animation[i]
-        //             const barOneStyle = bar[barOne]?.style;
-        //             barOneStyle.height = `${newHeight}px`;
-
-        //         }, i * ANIMATION_TIME)
-        //     }
-        // }
     }
 
     //Shows the animation of each box moving
@@ -117,13 +89,18 @@ function NavBar() {
     useEffect(() => {
 
         const data = localStorage.getItem('current-array')
+        const dataSize = localStorage.getItem('current-size')
         if(data) {
             setArr(JSON.parse(data))
         }
+        if(dataSize) {
+            setArrSize(JSON.parse(dataSize))
+        }
     }, [])
-    //Keeps the current array and saves in local storage
+    //Keeps the current array and array size then saves in local storage
     useEffect(() => {
         localStorage.setItem('current-array', JSON.stringify(arr))
+        localStorage.setItem('current-size', JSON.stringify(arrSize))
     })
 
     return(
