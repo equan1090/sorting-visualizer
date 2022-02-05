@@ -1,9 +1,11 @@
-function QuickSort(arr) {
-    quickSortHelper(arr, 0, arr.length - 1)
-    return arr
+export function QuickSort(arr) {
+    const animation = []
+    quickSortHelper(arr, 0, arr.length - 1, animation)
+
+    return animation
 }
 
-function quickSortHelper(arr, startIdx, endIdx) {
+function quickSortHelper(arr, startIdx, endIdx, animation) {
     if (startIdx >= endIdx) {
         return
     }
@@ -12,25 +14,33 @@ function quickSortHelper(arr, startIdx, endIdx) {
     rightIdx = endIdx
 
     while(rightIdx >= leftIdx) {
-        if(arr[leftIdx] > arr[pivotIdx] && arr[rightIdx] < arr[pivotIdx]) swap(leftIdx, rightIdx, arr)
+        obj = {}
+        obj[pivotIdx] = arr[pivotIdx]
+        if(arr[leftIdx] > arr[pivotIdx] && arr[rightIdx] < arr[pivotIdx]) {
+            swap(leftIdx, rightIdx, arr, animation)
+        }
 
-        if(arr[leftIdx] <= arr[pivotIdx]) leftIdx += 1
+        if(arr[leftIdx] <= arr[pivotIdx]){
+            leftIdx += 1
+        }
 
-        if(arr[rightIdx] >= arr[pivotIdx]) rightIdx -= 1
+        if(arr[rightIdx] >= arr[pivotIdx]) {
+            rightIdx -= 1
+        }
     }
-    swap(pivotIdx, rightIdx, arr)
+    swap(pivotIdx, rightIdx, arr, animation)
     leftSubArrayIsSmaller = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1)
 
     if(leftSubArrayIsSmaller) {
-        quickSortHelper(arr, startIdx, rightIdx - 1)
-        quickSortHelper(arr, rightIdx + 1, endIdx)
+        quickSortHelper(arr, startIdx, rightIdx - 1, animation)
+        quickSortHelper(arr, rightIdx + 1, endIdx, animation)
     } else{
-        quickSortHelper(arr, rightIdx + 1, endIdx)
-        quickSortHelper(arr, startIdx, rightIdx - 1)
+        quickSortHelper(arr, rightIdx + 1, endIdx, animation)
+        quickSortHelper(arr, startIdx, rightIdx - 1, animation)
     }
 
 }
 
-function swap(i, j, arr) {
+function swap(i, j, arr, animation) {
     arr[i], arr[j] = arr[j], arr[i]
 }

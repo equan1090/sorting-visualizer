@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import ArrayBlocks from "../ArrayBlocks/ArrayBlocks";
 import { mergeSort } from "../../SortingAlgs/MergeSort";
 import {BubbleSort} from "../../SortingAlgs/BubbleSort";
+import { selectionSort } from "../../SortingAlgs/SelectionSort";
 import Slider from '@mui/material/Slider';
 import './NavBar.css'
 
@@ -9,7 +10,8 @@ function NavBar() {
 
     const [arr, setArr] = useState([])
     const [arrSize, setArrSize] = useState(10)
-    const ANIMATION_TIME = 100
+    const [speed, setSpeed] = useState(1)
+    const ANIMATION_TIME = speed
 
     //Resets and Generates a new array
     const generateArr = () => {
@@ -20,8 +22,8 @@ function NavBar() {
         return random
     }
     const bubbleSortAnimation = () => {
-
-        const animation = BubbleSort(arr)
+        const copyArr = [...arr]
+        const animation = BubbleSort(copyArr)
 
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
@@ -53,9 +55,18 @@ function NavBar() {
 
     }
 
+    const selectionSortAnimation = () => {
+        const copyArr = [...arr]
+        const animation = selectionSort(copyArr)
+
+        console.log('arr', arr)
+        console.log('sorted', animation)
+    }
+
     //Shows the animation of each box moving
     const mergeSortAnimation = () => {
-        const animation = mergeSort(arr)
+        const copyArr = [...arr]
+        const animation = mergeSort(copyArr)
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
             const isColorChange = i % 3 !== 2;
@@ -101,6 +112,7 @@ function NavBar() {
     useEffect(() => {
         localStorage.setItem('current-array', JSON.stringify(arr))
         localStorage.setItem('current-size', JSON.stringify(arrSize))
+
     })
 
     return(
@@ -120,8 +132,20 @@ function NavBar() {
                         />
                     </div>
                     <li>Sorting Method</li>
-                    <button onClick={() => mergeSortAnimation()}>Merge Sort</button>
+                    <div>
+                        <li>Speed Delay</li>
+                        <Slider
+                            value={speed}
+                            onChange={(e, value) => setSpeed(value)}
+                            min={1}
+                            max={100}
+                            aria-label="Default"
+                            valueLabelDisplay="auto"
+                        />
+                    </div>
                     <button onClick={() => bubbleSortAnimation()}>Bubble Sort</button>
+                    <button onClick={() => selectionSortAnimation()}>Selection Sort</button>
+                    <button onClick={() => mergeSortAnimation()}>Merge Sort</button>
                 </ul>
             </nav>
 

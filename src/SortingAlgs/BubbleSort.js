@@ -26,13 +26,11 @@ export function BubbleSort(arr) {
 }
 
 function swap(i, j, arr, animation) {
-
     let temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
     const obj = {}
     obj[i] = arr[i]
     animation.push(obj)
-
 }
 
