@@ -27,12 +27,12 @@ function NavBar() {
 
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
+            //If value is an array then it is for comparing
+            // Comparing will highlight the items compared
             if(Array.isArray(animation[i])) {
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
-
-                //
                 const color = i % 2 === 0 ? 'red' : 'blue'
                 setTimeout(() => {
                     if(barOneStyle && barTwoStyle){
@@ -41,6 +41,7 @@ function NavBar() {
                     }
                 }, i * ANIMATION_TIME)
             }else {
+                //If it is an object, then it is for swapping
                 setTimeout(() => {
                     // Changes the height of the bars
                     const barObject = animation[i]

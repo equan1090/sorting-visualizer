@@ -8,9 +8,9 @@ export function BubbleSort(arr) {
             //Reverts color
             animation.push([j, j + 1])
             if(arr[j] > arr[j + 1]) {
-                let larger = j + 1
+
                 const obj = {}
-                obj[larger] = arr[j]
+                obj[j + 1] = arr[j]
 
                 // Pushes object for swapping animation later
                 // See NavBar bubbleSortAnimation
