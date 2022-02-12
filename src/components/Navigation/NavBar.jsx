@@ -62,6 +62,35 @@ function NavBar() {
 
         console.log('arr', arr)
         console.log('sorted', animation)
+        for(let i = 0; i < animation.length; i++) {
+            const bar = document.getElementsByClassName('each-box')
+            if(Array.isArray(animation[i])) {
+                const [barOne, barTwo] = animation[i]
+                const barOneStyle = bar[barOne]?.style
+                const barTwoStyle = bar[barTwo]?.style
+                const color = i % 2 === 0 ? 'red' : 'blue'
+                setTimeout(() => {
+                    if(barOneStyle && barTwoStyle){
+                        barOneStyle.backgroundColor = color;
+                        barTwoStyle.backgroundColor = color;
+                    }
+                }, i * ANIMATION_TIME)
+            }else {
+                //If it is an object, then it is for swapping
+                setTimeout(() => {
+                    // Changes the height of the bars
+
+                    const barObject = animation[i]
+                    const key = Object.keys(barObject)[0]
+                    const barOneStyle = bar[key]?.style;
+                    if(barOneStyle){
+                        barOneStyle.height = `${barObject[key]}px`;
+
+                    }
+
+                }, i * ANIMATION_TIME)
+            }
+        }
     }
 
     //Shows the animation of each box moving

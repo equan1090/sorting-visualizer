@@ -9,7 +9,7 @@ function ArrayBlocks({props}) {
             {props.map((num, idx) => (
                 <div className='each-box'
                     key={idx}
-                    style={{height: `${num}px`, width: `${Math.floor(1000 / size)}px`}}>
+                    style={{height: `${num}px`, width: `${Math.floor(1000 / size)}px`, color:'red'}}>
                 </div>
             ))}
         </div>
