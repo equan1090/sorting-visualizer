@@ -83,9 +83,15 @@ function NavBar() {
                     const barObject = animation[i]
                     const key = Object.keys(barObject)[0]
                     const barOneStyle = bar[key]?.style;
-                    if(barOneStyle){
-                        barOneStyle.height = `${barObject[key]}px`;
+                    if(key === 'previous'){
+                        // const barOneStyle = bar[key]?.style
+                        // barOneStyle[0].backgroundColor = 'blue'
 
+                    }
+                    else if(key === 'smallest') {
+
+                    }else{
+                        barOneStyle.height = `${barObject[key]}px`;
                     }
 
                 }, i * ANIMATION_TIME)

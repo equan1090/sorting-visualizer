@@ -15,13 +15,9 @@ export function selectionSort(arr) {
 
             animation.push([smallestIdx, i])
             animation.push([smallestIdx, i])
-            if(arr[smallestIdx] > arr[i]) {
-                const obj = {}
-                obj['previous'] = arr[smallestIdx]
-                smallestIdx = i
-                obj['smallest'] = arr[smallestIdx]
-                animation.push(obj)
 
+            if(arr[smallestIdx] > arr[i]) {
+                smallestIdx = i
             }
         }
         obj[smallestIdx] = arr[currentIdx]
