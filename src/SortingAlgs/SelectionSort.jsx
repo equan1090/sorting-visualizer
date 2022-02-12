@@ -4,11 +4,7 @@ export function selectionSort(arr) {
     while(currentIdx < arr.length - 1) {
         const obj = {}
         let smallestIdx = currentIdx
-        // animation.push([smallestIdx, smallestIdx + 1])
-        // animation.push([smallestIdx, smallestIdx + 1])
 
-        // obj['smallest'] = arr[smallestIdx]
-        // animation.push(obj)
 
 
         for(let i = currentIdx + 1; i < arr.length; i++) {

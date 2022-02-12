@@ -1,3 +1,5 @@
+
+
 export function mergeSort(arr) {
 
     const animation = []
@@ -38,24 +40,39 @@ function doMerge(mainArr, start, middle, end, auxiliaryArray, animation) {
             // overwrite the value at index k in the original array
             animation.push([k, auxiliaryArray[i]])
 
-            mainArr[k++] = auxiliaryArray[i++]
+            mainArr[k] = auxiliaryArray[i]
+            k++
+            i++
 
         } else{
             animation.push([k, auxiliaryArray[j]]);
-            mainArr[k++] = auxiliaryArray[j++]
+            mainArr[k] = auxiliaryArray[j]
+            k++
+            j++
         }
     }
     while(i <= middle) {
+
+        //Pushes twice to change and revert color
         animation.push([i, i]);
         animation.push([i, i]);
+
+
         animation.push([k, auxiliaryArray[i]]);
-        mainArr[k++] = auxiliaryArray[i++]
+        mainArr[k] = auxiliaryArray[i]
+        k++
+        i++
     }
     while(j <= end) {
+        //Pushes twice to change and revert color
         animation.push([j, j]);
         animation.push([j, j]);
+
+
         animation.push([k, auxiliaryArray[j]])
-        mainArr[k++] = auxiliaryArray[j++]
+        mainArr[k] = auxiliaryArray[j]
+        k++
+        j++
 
     }
 
