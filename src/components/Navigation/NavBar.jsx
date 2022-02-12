@@ -83,16 +83,8 @@ function NavBar() {
                     const barObject = animation[i]
                     const key = Object.keys(barObject)[0]
                     const barOneStyle = bar[key]?.style;
-                    if(key === 'previous'){
-                        // const barOneStyle = bar[key]?.style
-                        // barOneStyle[0].backgroundColor = 'blue'
 
-                    }
-                    else if(key === 'smallest') {
-
-                    }else{
-                        barOneStyle.height = `${barObject[key]}px`;
-                    }
+                    barOneStyle.height = `${barObject[key]}px`;
 
                 }, i * ANIMATION_TIME)
             }
@@ -137,18 +129,24 @@ function NavBar() {
 
         const data = localStorage.getItem('current-array')
         const dataSize = localStorage.getItem('current-size')
+
+        const speed = localStorage.getItem('current-speed')
+
         if(data) {
             setArr(JSON.parse(data))
         }
         if(dataSize) {
             setArrSize(JSON.parse(dataSize))
         }
+        if(speed) {
+            setSpeed(JSON.parse(speed))
+        }
     }, [])
     //Keeps the current array and array size then saves in local storage
     useEffect(() => {
         localStorage.setItem('current-array', JSON.stringify(arr))
         localStorage.setItem('current-size', JSON.stringify(arrSize))
-
+        localStorage.setItem('current-speed', JSON.stringify(speed))
     })
 
     return(
