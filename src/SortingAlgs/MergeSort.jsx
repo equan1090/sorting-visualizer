@@ -1,5 +1,3 @@
-
-
 export function mergeSort(arr) {
 
     const animation = []
