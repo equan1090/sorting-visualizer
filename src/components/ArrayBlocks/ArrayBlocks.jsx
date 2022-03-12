@@ -1,7 +1,7 @@
 import React from "react";
 import './ArrayBlocks.css'
 function ArrayBlocks({props}) {
-
+    
     let size = props.length
 
     return(

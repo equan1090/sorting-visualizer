@@ -12,6 +12,11 @@ function NavBar() {
     const [arrSize, setArrSize] = useState(10)
     const [speed, setSpeed] = useState(1)
 
+    const blue = '#0e79b2'
+    const red = '#bf1363'
+    useEffect(() => {
+        setSpeed(speed)
+    }, [speed])
 
     useEffect(() => {
 
@@ -55,7 +60,7 @@ function NavBar() {
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
-                const color = i % 2 === 0 ? 'red' : 'blue'
+                const color = i % 2 === 0 ? red : blue
                 setTimeout(() => {
                     if(barOneStyle && barTwoStyle){
                         barOneStyle.backgroundColor = color;
@@ -81,6 +86,7 @@ function NavBar() {
     const bubbleSortAnimation = () => {
         const copyArr = [...arr]
         const animation = BubbleSort(copyArr)
+        console.log('animation', animation)
         highlight_swap(animation)
 
 
@@ -106,7 +112,7 @@ function NavBar() {
                 const [barOne, barTwo] = animation[i]
                 const barOneStyle = bar[barOne]?.style
                 const barTwoStyle = bar[barTwo]?.style
-                const color = i % 3 === 0 ? 'red' : 'blue'
+                const color = i % 3 === 0 ? red : blue
 
                 setTimeout(() => {
                     if(barOneStyle && barTwoStyle){
