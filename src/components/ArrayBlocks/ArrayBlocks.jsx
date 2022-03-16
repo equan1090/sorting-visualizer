@@ -1,11 +1,11 @@
 import React from "react";
 import './ArrayBlocks.css'
 function ArrayBlocks({props}) {
-    
+
     let size = props.length
 
     return(
-        <div className='array-wrapper'>
+        <div className='container flex'>
             {props.map((num, idx) => (
                 <div className='each-box'
                     key={idx}

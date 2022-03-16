@@ -14,12 +14,12 @@ function NavBar() {
 
     const blue = '#0e79b2'
     const red = '#bf1363'
-    useEffect(() => {
-        setSpeed(speed)
-    }, [speed])
+    // useEffect(() => {
+    //     setSpeed(speed)
+    // }, [speed])
 
+    // Populates data from local storage and sets variables
     useEffect(() => {
-
         const data = localStorage.getItem('current-array')
         const dataSize = localStorage.getItem('current-size')
 
@@ -51,6 +51,7 @@ function NavBar() {
         return random
     }
 
+    // Highlights the compared values and swaps them
     const highlight_swap = (animation) => {
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
@@ -84,8 +85,8 @@ function NavBar() {
     }
 
     const bubbleSortAnimation = () => {
-        const copyArr = [...arr]
-        const animation = BubbleSort(copyArr)
+        // const copyArr = [...arr]
+        const animation = BubbleSort(arr)
         console.log('animation', animation)
         highlight_swap(animation)
 
@@ -93,17 +94,16 @@ function NavBar() {
     }
 
     const selectionSortAnimation = () => {
-        const copyArr = [...arr]
-        const animation = selectionSort(copyArr)
-
+        // const copyArr = [...arr]
+        const animation = selectionSort(arr)
         highlight_swap(animation)
 
     }
 
     //Shows the animation of each box moving
     const mergeSortAnimation = () => {
-        const copyArr = [...arr]
-        const animation = mergeSort(copyArr)
+        // const copyArr = [...arr]
+        const animation = mergeSort(arr)
         for(let i = 0; i < animation.length; i++) {
             const bar = document.getElementsByClassName('each-box')
             const isColorChange = i % 3 !== 2;
@@ -140,7 +140,7 @@ function NavBar() {
         <>
             <nav className='top-nav-menu'>
                 <ul>
-                    <li onClick={() => setArr(generateArr())}>Generate New Array</li>
+                    <li className='new-array' onClick={() => setArr(generateArr())}>Generate New Array</li>
                     <div>
                         <li>Array Size</li>
                         <Slider
@@ -152,7 +152,7 @@ function NavBar() {
                             valueLabelDisplay="auto"
                         />
                     </div>
-                    <li>Sorting Method</li>
+
                     <div>
                         <li>Speed Delay</li>
                         <Slider
@@ -164,9 +164,9 @@ function NavBar() {
                             valueLabelDisplay="auto"
                         />
                     </div>
-                    <button onClick={() => bubbleSortAnimation()}>Bubble Sort</button>
-                    <button onClick={() => selectionSortAnimation()}>Selection Sort</button>
-                    <button onClick={() => mergeSortAnimation()}>Merge Sort</button>
+                    <button className='sort-btn' onClick={() => bubbleSortAnimation()}>Bubble Sort</button>
+                    <button className='sort-btn' onClick={() => selectionSortAnimation()}>Selection Sort</button>
+                    <button className='sort-btn' onClick={() => mergeSortAnimation()}>Merge Sort</button>
                 </ul>
             </nav>
 
